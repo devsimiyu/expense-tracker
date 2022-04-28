@@ -2,6 +2,8 @@ package com.devsimiyu.expensetracker.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import com.devsimiyu.expensetracker.model.AddCategoryForm;
 import com.devsimiyu.expensetracker.model.Category;
 import com.devsimiyu.expensetracker.service.CategoryService;
@@ -33,7 +35,7 @@ public class CategoryController {
     }
 
     @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE})
-    public @ResponseBody Category create(@RequestBody AddCategoryForm categoryForm) {
+    public @ResponseBody Category create(@Valid @RequestBody AddCategoryForm categoryForm) {
         Integer id = categoryService.addCategory(categoryForm);
         Category category = categoryService.getCategory(id);
 
