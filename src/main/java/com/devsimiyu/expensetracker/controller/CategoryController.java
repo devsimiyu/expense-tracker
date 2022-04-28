@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+
 @RestController
 @RequestMapping("category")
 public class CategoryController {
@@ -30,7 +33,19 @@ public class CategoryController {
     }
 
     @GetMapping("{id}")
-    public @ResponseBody Category detail(@PathVariable("id") int id) {
+    @ApiOperation(
+        value = "Find category by ID",
+        notes = "Provide an ID to lookup a specific category"
+    )
+    public @ResponseBody Category detail(
+        @ApiParam(
+            value = "Category ID",
+            required = true,
+            type = "integer"
+        )
+        @PathVariable("id") 
+        int id
+    ) {
         return categoryService.getCategory(id);
     }
 
