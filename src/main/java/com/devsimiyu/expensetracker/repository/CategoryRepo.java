@@ -2,8 +2,6 @@ package com.devsimiyu.expensetracker.repository;
 
 import java.util.List;
 
-import javax.websocket.server.PathParam;
-
 import com.devsimiyu.expensetracker.model.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -20,5 +18,5 @@ public interface CategoryRepo extends JpaRepository<Category, Integer> {
     Category findCategoryById(@Param("id") Integer id);
 
     @Query(value = "CALL categorysave(:name)", nativeQuery = true)
-    Integer saveCategory(@PathParam("name") String name);
+    Integer saveCategory(@Param("name") String name);
 }
